@@ -3,6 +3,7 @@
         "cstdlib": "c",
         "hash_map": "c",
         "chrono": "c",
-        "algorithm": "c"
+        "algorithm": "c",
+        "list": "c"
     }
 }

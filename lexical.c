@@ -10,18 +10,34 @@ void match_int(char, word_paser *);
 void match_double(char, word_paser *);
 void match_text(char, word_paser *, char *);
 
+int is_in(int);
+
 token get_token(int *paser_status){
     token return_token;
     int index = 0;  // 记录index和是否遇到了EOF
-    *paser_status = paser(&index);  // 解析
+    do{
+        set_start(global_paser);
+        *paser_status = paser(&index);  // 解析
+    }while(is_in(index));
 
     return_token.type = index;
     return_token.data_type = text;
     return_token.data.text = malloc(strlen(global_paser[index]->text));
     strcpy(return_token.data.text, global_paser[index]->text);
-    set_start(global_paser);
     fprintf(debug, "[debug]token type = %d\n\n", index);
+
     return return_token;
+}
+
+int is_in(int element){  // 检查某个值是否在数组中
+    int list[] = {SPACE_PASER};
+    int len = 1;
+    for(int i=0;i<len;i++){
+        if(list[i] == element){
+            return 1;
+        }
+    }
+    return 0;
 }
 
 int paser(int *index){
@@ -55,6 +71,8 @@ int paser(int *index){
         match_text(p, global_paser[SUB_PASER], "-");
         match_text(p, global_paser[MUL_PASER], "*");
         match_text(p, global_paser[DIV_PASER], "/");
+        match_text(p, global_paser[LB_PASER], "(");
+        match_text(p, global_paser[RB_PASER], ")");
 
         *index = check_list(global_paser);  // 检查解析结果
 

@@ -5,7 +5,7 @@
 #define true 1
 #define false 0
 
-#define MAX_PASER_SIZE 8
+#define MAX_PASER_SIZE 10
 #define INT_PASER 0
 #define DOUBLE_PASER 1
 #define ENTER_PASER 2
@@ -14,6 +14,8 @@
 #define SUB_PASER 5
 #define MUL_PASER 6
 #define DIV_PASER 7
+#define LB_PASER 8
+#define RB_PASER 9
 
 // 非终结符
 #define NonTerminator -1
@@ -28,6 +30,8 @@ typedef enum token_type
     SUB = SUB_PASER,
     MUL = MUL_PASER,
     DIV = DIV_PASER,
+    LB = LB_PASER,
+    RB = RB_PASER,
     BAD_token = -2,
     EOF_token = -3,
 

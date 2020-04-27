@@ -12,11 +12,43 @@
 #define realloc(p,size) safe_realloc(p,size)
 #define memcpy(p1,p2,size) safe_memcpy(p1,p2,size)
 
+// 获取并返回一个token
+#define get_pop_token(status,list,new_token) \
+do{ \
+    safe_get_token(status, list); \
+    new_token = pop_node(list); \
+}while(0);
+
+// 执行右边的匹配
+#define get_right_token(status,list,func,new_token) \
+do{ \
+    safe_get_token(status, list); \
+    func(status, list); \
+    new_token = pop_node(list); \
+}while(0);
+
+// 执行左边的匹配
+#define get_base_token(status,list,func,new_token) \
+do{ \
+    func(status, list); \
+    new_token = pop_node(list); \
+}while(0);
+
+// 返回一个token...不需要back_token
+#define back_one_token(list, new_token) add_node(list, new_token)
+
+#define back_again(list, new_token) \
+do{ \
+add_node(list, new_token); \
+back_token(list); \
+}while(0);
+
 int paser_status = 1;
 token_node *global_token_node = NULL;
 
 void do_exit(void);
 void setup();
+void paser_error(char *);
 
 void back_token(token_node *);
 
@@ -110,14 +142,9 @@ void polynomial(int *status, token_node *list){  // 多项式
 
     left = pop_node(list);  // 先弹出一个token   检查token的类型：区分是模式1,还是模式2/3
     if(left.type == NON_polynomial){  // 模式2/3
-        safe_get_token(status, list);  // 获取一个token并压入栈
-        symbol = pop_node(list);  // 获取一个token
+        get_pop_token(status, list, symbol);
         if(symbol.type == ADD_PASER || symbol.type == SUB_PASER){  // 模式2/3
-            safe_get_token(status, list);
-            puts("FFFF");
-            factor(status, list);
-            puts("WWW");
-            right = pop_node(list);
+            get_right_token(status, list, factor, right);  // 回调右边
 
             new_token.type = NON_polynomial;
             new_token.data_type = d_number;
@@ -136,15 +163,15 @@ void polynomial(int *status, token_node *list){  // 多项式
         }
         else{  // 递归跳出
             printf("left.data.d_number = %f\n", left.data.d_number);
-            add_node(list, left);
-            add_node(list, symbol);
+            back_one_token(list, left);
+            back_again(list, symbol);
             return;
         }
     }
     else{  // 模式1
-        add_node(list, left);  // 先压入
-        factor(status, list);
-        new_token = pop_node(list);
+        back_one_token(list, left);
+        get_base_token(status, list, factor, new_token);
+
         new_token.type = NON_polynomial;
         add_node(list, new_token);
         return polynomial(status, list);  // 回调自己
@@ -161,17 +188,15 @@ void factor(int *status, token_node *list){  // 因试分解
 
     left = pop_node(list);  // 先弹出一个token   检查token的类型：区分是模式1,还是模式2/3
     if(left.type == NON_factor){  // 模式2/3
-        puts("cul factor");
-        safe_get_token(status, list);  // 获取一个token并压入栈
-        symbol = pop_node(list);  // 获取一个token
+        get_pop_token(status, list, symbol);
 
         if(symbol.type == MUL_PASER || symbol.type == DIV_PASER){  // 模式2/3
-            safe_get_token(status, list);
-            number(status, list);
-            right = pop_node(list);
+            get_right_token(status, list, number, right);  // 回调右边
 
             new_token.type = NON_factor;
             new_token.data_type = d_number;
+
+            // 逻辑操作
             double l_num = left.data.d_number, r_num;
             if(right.type == NON_dou){
                 r_num = right.data.d_number;
@@ -190,17 +215,16 @@ void factor(int *status, token_node *list){  // 因试分解
             return factor(status, list);  // 回调自己
         }
         else{  // 递归跳出
-            add_node(list, left);
-            add_node(list, symbol);  // 回退，也就是让下一次pop的时候读取到的是left而不是symbol
-            back_token(list);
+            // 回退，也就是让下一次pop的时候读取到的是left而不是symbol
+            back_one_token(list, left);
+            back_again(list, symbol);
             return;
         }
     }
     else{  // 模式1
-        puts("cul number");
-        add_node(list, left);  // 先压入
-        number(status, list);
-        new_token = pop_node(list);
+        back_one_token(list, left);
+        get_base_token(status, list, number, new_token);
+
         if(new_token.type == NON_int){
             new_token.data.d_number = (double)new_token.data.i_number;
         }
@@ -210,8 +234,12 @@ void factor(int *status, token_node *list){  // 因试分解
     }
 }
 
-
-void number(int *status, token_node *list){  // 数字归约器
+/*
+number : INT_PASER
+       | DOUBLE_PASER
+       | LB polynomial RB
+*/
+void number(int *status, token_node *list){  // 数字归约
     token gett, new_token;
 
     gett = pop_node(list);  // 取得一个token
@@ -220,20 +248,30 @@ void number(int *status, token_node *list){  // 数字归约器
         new_token.type = NON_int;
         new_token.data_type = i_number;
         new_token.data.i_number = atoi(gett.data.text);
-        free(gett.data.text);  // 释放字符串
     }
-    else if(gett.type == DOUBLE_PASER){  // int类型
+    else if(gett.type == DOUBLE_PASER){
         new_token.type = NON_dou;
         new_token.data_type = d_number;
         new_token.data.i_number = atof(gett.data.text);
-        free(gett.data.text);  // 释放字符串
+    }
+    else if(gett.type == LB_PASER){  // 模式3
+        get_right_token(status, list, polynomial, new_token);
+        new_token.type = NON_dou;
+        token rb;
+        get_pop_token(status, list ,rb);
+        if(rb.type != RB_PASER){  // 匹配失败
+            paser_error("Don't get ')'");
+        }
     }
     else{  // 不是期望值
-        add_node(list, gett);  // 回退一个token
-        new_token.type = BAD_token;
-        new_token.data_type = i_number;
-        new_token.data.i_number = 0;
+        back_one_token(list, gett);
         return;
     }
+    free(gett.data.text);  // 释放字符串
     add_node(list, new_token);  // 压入节点
+}
+
+void paser_error(char *text){
+    fprintf(debug, "[error][grammar]  paser error : %s\n\n", text);
+    exit(1);
 }
