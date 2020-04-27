@@ -14,6 +14,86 @@
 
 [debug][lexical]  continue to paser
 
+[info][lexical]  p = '+'
+
+[debug][lexical]  check list : paser_list[0]->status = -2
+[debug][lexical]  check list : paser_list[1]->status = -1
+[debug][lexical]  check list : paser_list[2]->status = -1
+[debug][lexical]  check list : paser_list[3]->status = -1
+[debug][lexical]  check list : paser_list[4]->status = -1
+[debug][lexical]  check list : paser_list[5]->status = -1
+[debug][lexical]  check list : paser_list[6]->status = -1
+[debug][lexical]  check list : paser_list[7]->status = -1
+[debug][lexical]  check list : end_count = 1
+[debug][lexical]  check list : not_count = 7
+[debug][lexical]  check list : count all = 8
+
+[info][lexical]  back_p
+
+[info][lexical]  get value = '2' len = 1 from 0
+
+[info][lexical]  set_start
+
+[debug]token type = 0
+
+[debug][grammar]  get token type = 0
+
+[info][lexical]  p = '+'
+
+[debug][lexical]  check list : paser_list[0]->status = -1
+[debug][lexical]  check list : paser_list[1]->status = -1
+[debug][lexical]  check list : paser_list[2]->status = -1
+[debug][lexical]  check list : paser_list[3]->status = -1
+[debug][lexical]  check list : paser_list[4]->status = -3
+[debug][lexical]  check list : paser_list[5]->status = -1
+[debug][lexical]  check list : paser_list[6]->status = -1
+[debug][lexical]  check list : paser_list[7]->status = -1
+[debug][lexical]  check list : end_count = 0
+[debug][lexical]  check list : not_count = 7
+[debug][lexical]  check list : count all = 8
+
+[debug][lexical]  continue to paser
+
+[info][lexical]  p = '2'
+
+[debug][lexical]  check list : paser_list[0]->status = -1
+[debug][lexical]  check list : paser_list[1]->status = -1
+[debug][lexical]  check list : paser_list[2]->status = -1
+[debug][lexical]  check list : paser_list[3]->status = -1
+[debug][lexical]  check list : paser_list[4]->status = -2
+[debug][lexical]  check list : paser_list[5]->status = -1
+[debug][lexical]  check list : paser_list[6]->status = -1
+[debug][lexical]  check list : paser_list[7]->status = -1
+[debug][lexical]  check list : end_count = 1
+[debug][lexical]  check list : not_count = 7
+[debug][lexical]  check list : count all = 8
+
+[info][lexical]  back_p
+
+[info][lexical]  get value = '+' len = 1 from 4
+
+[info][lexical]  set_start
+
+[debug]token type = 4
+
+[debug][grammar]  get token type = 4
+
+[info][lexical]  p = '2'
+
+[debug][lexical]  check list : paser_list[0]->status = 1
+[debug][lexical]  check list : paser_list[1]->status = 1
+[debug][lexical]  check list : paser_list[2]->status = -1
+[debug][lexical]  check list : paser_list[3]->status = -1
+[debug][lexical]  check list : paser_list[4]->status = -1
+[debug][lexical]  check list : paser_list[5]->status = -1
+[debug][lexical]  check list : paser_list[6]->status = -1
+[debug][lexical]  check list : paser_list[7]->status = -1
+[debug][lexical]  check list : end_count = 0
+[debug][lexical]  check list : not_count = 6
+[debug][lexical]  check list : count all = 8
+
+[debug][lexical]  continue to paser
+
 [info][lexical]  p = '*'
 
 [debug][lexical]  check list : paser_list[0]->status = -2
@@ -34,6 +114,8 @@
 
 [info][lexical]  set_start
 
+[debug]token type = 0
+
 [debug][grammar]  get token type = 0
 
 [info][lexical]  p = '*'
@@ -72,161 +154,11 @@
 
 [info][lexical]  set_start
 
+[debug]token type = 6
+
 [debug][grammar]  get token type = 6
 
 [info][lexical]  p = '3'
-
-[debug][lexical]  check list : paser_list[0]->status = 1
-[debug][lexical]  check list : paser_list[1]->status = 1
-[debug][lexical]  check list : paser_list[2]->status = -1
-[debug][lexical]  check list : paser_list[3]->status = -1
-[debug][lexical]  check list : paser_list[4]->status = -1
-[debug][lexical]  check list : paser_list[5]->status = -1
-[debug][lexical]  check list : paser_list[6]->status = -1
-[debug][lexical]  check list : paser_list[7]->status = -1
-[debug][lexical]  check list : end_count = 0
-[debug][lexical]  check list : not_count = 6
-[debug][lexical]  check list : count all = 8
-
-[debug][lexical]  continue to paser
-
-[info][lexical]  p = '*'
-
-[debug][lexical]  check list : paser_list[0]->status = -2
-[debug][lexical]  check list : paser_list[1]->status = -1
-[debug][lexical]  check list : paser_list[2]->status = -1
-[debug][lexical]  check list : paser_list[3]->status = -1
-[debug][lexical]  check list : paser_list[4]->status = -1
-[debug][lexical]  check list : paser_list[5]->status = -1
-[debug][lexical]  check list : paser_list[6]->status = -1
-[debug][lexical]  check list : paser_list[7]->status = -1
-[debug][lexical]  check list : end_count = 1
-[debug][lexical]  check list : not_count = 7
-[debug][lexical]  check list : count all = 8
-
-[info][lexical]  back_p
-
-[info][lexical]  get value = '3' len = 1 from 0
-
-[info][lexical]  set_start
-
-[debug][grammar]  get token type = 0
-
-[info][lexical]  p = '*'
-
-[debug][lexical]  check list : paser_list[0]->status = -1
-[debug][lexical]  check list : paser_list[1]->status = -1
-[debug][lexical]  check list : paser_list[2]->status = -1
-[debug][lexical]  check list : paser_list[3]->status = -1
-[debug][lexical]  check list : paser_list[4]->status = -1
-[debug][lexical]  check list : paser_list[5]->status = -1
-[debug][lexical]  check list : paser_list[6]->status = -3
-[debug][lexical]  check list : paser_list[7]->status = -1
-[debug][lexical]  check list : end_count = 0
-[debug][lexical]  check list : not_count = 7
-[debug][lexical]  check list : count all = 8
-
-[debug][lexical]  continue to paser
-
-[info][lexical]  p = '4'
-
-[debug][lexical]  check list : paser_list[0]->status = -1
-[debug][lexical]  check list : paser_list[1]->status = -1
-[debug][lexical]  check list : paser_list[2]->status = -1
-[debug][lexical]  check list : paser_list[3]->status = -1
-[debug][lexical]  check list : paser_list[4]->status = -1
-[debug][lexical]  check list : paser_list[5]->status = -1
-[debug][lexical]  check list : paser_list[6]->status = -2
-[debug][lexical]  check list : paser_list[7]->status = -1
-[debug][lexical]  check list : end_count = 1
-[debug][lexical]  check list : not_count = 7
-[debug][lexical]  check list : count all = 8
-
-[info][lexical]  back_p
-
-[info][lexical]  get value = '*' len = 1 from 6
-
-[info][lexical]  set_start
-
-[debug][grammar]  get token type = 6
-
-[info][lexical]  p = '4'
-
-[debug][lexical]  check list : paser_list[0]->status = 1
-[debug][lexical]  check list : paser_list[1]->status = 1
-[debug][lexical]  check list : paser_list[2]->status = -1
-[debug][lexical]  check list : paser_list[3]->status = -1
-[debug][lexical]  check list : paser_list[4]->status = -1
-[debug][lexical]  check list : paser_list[5]->status = -1
-[debug][lexical]  check list : paser_list[6]->status = -1
-[debug][lexical]  check list : paser_list[7]->status = -1
-[debug][lexical]  check list : end_count = 0
-[debug][lexical]  check list : not_count = 6
-[debug][lexical]  check list : count all = 8
-
-[debug][lexical]  continue to paser
-
-[info][lexical]  p = '/'
-
-[debug][lexical]  check list : paser_list[0]->status = -2
-[debug][lexical]  check list : paser_list[1]->status = -1
-[debug][lexical]  check list : paser_list[2]->status = -1
-[debug][lexical]  check list : paser_list[3]->status = -1
-[debug][lexical]  check list : paser_list[4]->status = -1
-[debug][lexical]  check list : paser_list[5]->status = -1
-[debug][lexical]  check list : paser_list[6]->status = -1
-[debug][lexical]  check list : paser_list[7]->status = -1
-[debug][lexical]  check list : end_count = 1
-[debug][lexical]  check list : not_count = 7
-[debug][lexical]  check list : count all = 8
-
-[info][lexical]  back_p
-
-[info][lexical]  get value = '4' len = 1 from 0
-
-[info][lexical]  set_start
-
-[debug][grammar]  get token type = 0
-
-[info][lexical]  p = '/'
-
-[debug][lexical]  check list : paser_list[0]->status = -1
-[debug][lexical]  check list : paser_list[1]->status = -1
-[debug][lexical]  check list : paser_list[2]->status = -1
-[debug][lexical]  check list : paser_list[3]->status = -1
-[debug][lexical]  check list : paser_list[4]->status = -1
-[debug][lexical]  check list : paser_list[5]->status = -1
-[debug][lexical]  check list : paser_list[6]->status = -1
-[debug][lexical]  check list : paser_list[7]->status = -3
-[debug][lexical]  check list : end_count = 0
-[debug][lexical]  check list : not_count = 7
-[debug][lexical]  check list : count all = 8
-
-[debug][lexical]  continue to paser
-
-[info][lexical]  p = '2'
-
-[debug][lexical]  check list : paser_list[0]->status = -1
-[debug][lexical]  check list : paser_list[1]->status = -1
-[debug][lexical]  check list : paser_list[2]->status = -1
-[debug][lexical]  check list : paser_list[3]->status = -1
-[debug][lexical]  check list : paser_list[4]->status = -1
-[debug][lexical]  check list : paser_list[5]->status = -1
-[debug][lexical]  check list : paser_list[6]->status = -1
-[debug][lexical]  check list : paser_list[7]->status = -2
-[debug][lexical]  check list : end_count = 1
-[debug][lexical]  check list : not_count = 7
-[debug][lexical]  check list : count all = 8
-
-[info][lexical]  back_p
-
-[info][lexical]  get value = '/' len = 1 from 7
-
-[info][lexical]  set_start
-
-[debug][grammar]  get token type = 7
-
-[info][lexical]  p = '2'
 
 [debug][lexical]  check list : paser_list[0]->status = 1
 [debug][lexical]  check list : paser_list[1]->status = 1
@@ -258,9 +190,11 @@
 
 [info][lexical]  back_p
 
-[info][lexical]  get value = '2' len = 1 from 0
+[info][lexical]  get value = '3' len = 1 from 0
 
 [info][lexical]  set_start
+
+[debug]token type = 0
 
 [debug][grammar]  get token type = 0
 
@@ -300,6 +234,8 @@
 ' len = 1 from 2
 
 [info][lexical]  set_start
+
+[debug]token type = 2
 
 [debug][grammar]  get token type = 2
 

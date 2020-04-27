@@ -20,6 +20,7 @@ token get_token(int *paser_status){
     return_token.data.text = malloc(strlen(global_paser[index]->text));
     strcpy(return_token.data.text, global_paser[index]->text);
     set_start(global_paser);
+    fprintf(debug, "[debug]token type = %d\n\n", index);
     return return_token;
 }
 

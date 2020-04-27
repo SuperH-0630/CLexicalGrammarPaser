@@ -35,6 +35,7 @@ typedef enum token_type
     NON_int = -4,
     NON_dou = -5,
     NON_factor = -6,
+    NON_polynomial = -7,
 } token_type;
 
 typedef union token_data
